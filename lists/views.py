@@ -13,7 +13,5 @@ def home_page(request):
     return render(request, 'home.html', {'items': items})
 
 
-# TODO - Code Smell: POST test is too long
-# TODO - Display multiple items in the table
 # TODO - Support more than one list
-
+# TODO - Clean up DB after FT runs

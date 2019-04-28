@@ -1,1 +1,1 @@
-python functional_tests.py 
+python manage.py test functional_tests
