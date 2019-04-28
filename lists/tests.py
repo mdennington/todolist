@@ -8,19 +8,22 @@ from lists.views import home_page
 
 class HomePageTest(TestCase):
 
-    def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
+# Deleted as not required
+    # def test_root_url_resolves_to_home_page_view(self):
+    #     found = resolve('/')
+    #     self.assertEqual(found.func, home_page)
 
 # Create http object, pass to home page 
 # view and check html that returns
     def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request) 
-        html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<html>'))
-        self.assertIn('<title>To Do Lists</title>', html)
-        self.assertTrue(html.endswith('</html>'))
+        response = self.client.get('/')
+        # These are the long way of achieving what the DjangoTestClient 
+        # provides. Better to validate template used for given URL
+        # html = response.content.decode('utf8')
+        # self.assertTrue(html.startswith('<html>'))
+        # self.assertIn('<title>To Do Lists</title>', html)
+        # self.assertTrue(html.endswith('</html>'))
+        self.assertTemplateUsed(response, 'home.html')
 
     
 
