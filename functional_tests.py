@@ -32,26 +32,35 @@ class NewVisitorTest(unittest.TestCase):
 
         # Check page updates and lists the entry as
         # 1. Read Chapter 6 of Two Scoops
-        inputbox.send_keys(Keys.Enter)
+        inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Read Chapter 6 of Two Scoops' for row in rows)
-        )
-
-    
+        self.assertIn('1: Read Chapter 6 of Two Scoops', [row.text for row in rows])
 
         # Add a second entry "Read Chapter 7 of Two Scoops"
-        self.fail('Finish the Test')
-
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Read Chapter 7 of Two Scoops')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+        
         # Check page update and lists the entries now as
         # 1. Read Chapter 6 of Two Scoops
         # 2. Read Chapter 7 of Two Scoops
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(
+            "1: Read Chapter 6 of Two Scoops", 
+            [row.text for row in rows]
+        )
+        self.assertIn(
+            "2: Read Chapter 7 of Two Scoops", 
+            [row.text for row in rows]
+        )
 
         # Check To Do List with Test Name Edith in URL
-
+        self.fail("Finish The Test")
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
