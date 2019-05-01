@@ -1,6 +1,5 @@
 db.sqlite3
 geckodriver.log
 .vscode
-*.lock
 geckodriver.exe
 lists/static
