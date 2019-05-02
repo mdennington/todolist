@@ -1,3 +1,4 @@
 geckodriver.log
 .vscode
 geckodriver.exe
+settings/secret_key.py
