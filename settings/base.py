@@ -22,11 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'nudn6tz_!taymj7c^#!=!y^qm8*za%z7-cz7tu6p@15ej&&*#6'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['stagingtodolist.herokuapp.com']
-
 
 # Application definition
 
@@ -125,5 +120,5 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'lists/static'),
+    os.path.join(BASE_DIR, '/lists/static'),
 )
