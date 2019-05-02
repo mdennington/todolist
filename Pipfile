@@ -10,6 +10,7 @@ selenium = "*"
 django = "*"
 gunicorn = "*"
 whitenoise = "*"
+fabric = "*"
 
 [requires]
 python_version = "3.7"
