@@ -20,7 +20,7 @@ class NewVisitorTest(FunctionalTest):
         self.assertIn('To Do', header_text)
 
         # Enter a to do item
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
@@ -32,7 +32,7 @@ class NewVisitorTest(FunctionalTest):
         self.wait_for_row_in_list_table( "1: Read Chapter 6 of Two Scoops")
 
         # Add a second entry "Read Chapter 7 of Two Scoops"
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         self.send_input_to_list_item(inputbox,'Read Chapter 7 of Two Scoops')
         
         # Check page update and lists the entries now as
@@ -45,7 +45,7 @@ class NewVisitorTest(FunctionalTest):
     def test_multiple_users_can_start_lists_at_different_URLS(self):
         # Edith Starts a New List
         self.browser.get(self.live_server_url)
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys("Read Chapter 2 of Two Scoops")
         inputbox.send_keys(Keys.ENTER)
 
@@ -62,7 +62,7 @@ class NewVisitorTest(FunctionalTest):
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Read Chapter 2 of Two Scoops', page_text)
         
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Script automated deployment')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table("1: Script automated deployment")
