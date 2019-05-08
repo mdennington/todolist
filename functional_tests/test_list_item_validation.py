@@ -43,3 +43,21 @@ class ItemValidationTest(FunctionalTest):
         self.get_item_input_box().send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
         self.wait_for_row_in_list_table('2: Make tea')
+
+    def test_cannot_add_duplicate_items(self):
+        # Enter first item
+        self.browser.get(self.live_server_url)
+        self.get_item_input_box().send_keys('Buy Wellies')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Buy Wellies')
+
+        # Try to end second duplicate item
+        self.get_item_input_box().send_keys('Buy Wellies')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+
+        # Present Helpful Error Message
+        self.wait_for(lambda: self.assertEqual(
+            self.browser.find_element_by_css_selector('.has-error').text,
+            "You've already got this on your list"
+        ))
+
