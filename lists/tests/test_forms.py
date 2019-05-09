@@ -5,6 +5,7 @@ from lists.forms import (
     ExistingListItemForm, ItemForm
 )
 
+from unittest import skip
 from lists.models import List, Item
 
 
@@ -22,6 +23,7 @@ class ItemFormTest(TestCase):
             form.errors['text'],
             [EMPTY_ITEM_ERROR]
         )
+
 
     def test_form_save_handles_saving_to_a_list(self):
         list_ = List.objects.create()
@@ -51,3 +53,9 @@ class ExistingListItemFormTest(TestCase):
         form = ExistingListItemForm(for_list=list_, data={'text': 'no twins!'})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['text'], [DUPLICATE_ITEM_ERROR])
+
+    def test_form_save(self):
+        list_ = List.objects.create()
+        form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
+        new_item = form.save()
+        self.assertEqual(new_item, Item.objects.all()[0])
