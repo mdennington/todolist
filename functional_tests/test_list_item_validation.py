@@ -58,7 +58,7 @@ class ItemValidationTest(FunctionalTest):
         # Present Helpful Error Message
         self.wait_for(lambda: self.assertEqual(
             self.get_error_element().text,
-            "You already have this on your list"
+            "You already have this in your list"
         ))
 
     def test_error_messages_are_cleared_on_input(self):
