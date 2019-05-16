@@ -4,9 +4,7 @@ from lists.forms import (
     DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR,
     ExistingListItemForm, ItemForm
 )
-
-from unittest import skip
-from lists.models import List, Item
+from lists.models import Item, List
 
 
 class ItemFormTest(TestCase):
@@ -16,13 +14,11 @@ class ItemFormTest(TestCase):
         self.assertIn('placeholder="Enter a to-do item"', form.as_p())
         self.assertIn('class="form-control input-lg"', form.as_p())
 
+
     def test_form_validation_for_blank_items(self):
         form = ItemForm(data={'text': ''})
-        self.assertFalse(form.is_valid())       # is_valid checks a form is valid which is should not be in this test
-        self.assertEqual(
-            form.errors['text'],
-            [EMPTY_ITEM_ERROR]
-        )
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['text'], [EMPTY_ITEM_ERROR])
 
 
     def test_form_save_handles_saving_to_a_list(self):
@@ -34,6 +30,7 @@ class ItemFormTest(TestCase):
         self.assertEqual(new_item.list, list_)
 
 
+
 class ExistingListItemFormTest(TestCase):
 
     def test_form_renders_item_text_input(self):
@@ -41,11 +38,13 @@ class ExistingListItemFormTest(TestCase):
         form = ExistingListItemForm(for_list=list_)
         self.assertIn('placeholder="Enter a to-do item"', form.as_p())
 
+
     def test_form_validation_for_blank_items(self):
         list_ = List.objects.create()
         form = ExistingListItemForm(for_list=list_, data={'text': ''})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['text'], [EMPTY_ITEM_ERROR])
+
 
     def test_form_validation_for_duplicate_items(self):
         list_ = List.objects.create()
@@ -54,8 +53,10 @@ class ExistingListItemFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['text'], [DUPLICATE_ITEM_ERROR])
 
+
     def test_form_save(self):
         list_ = List.objects.create()
         form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
         new_item = form.save()
         self.assertEqual(new_item, Item.objects.all()[0])
+

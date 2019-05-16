@@ -1,4 +1,7 @@
+db.sqlite3
 geckodriver.log
-.vscode
-geckodriver.exe
-settings/secret_key.py
+virtualenv
+__pycache__
+*.pyc
+./static
+.env
