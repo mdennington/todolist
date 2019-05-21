@@ -11,6 +11,7 @@ django = "*"
 gunicorn = "*"
 whitenoise = "*"
 fabric = "*"
+pep8 = "*"
 
 [requires]
 python_version = "3.7"
