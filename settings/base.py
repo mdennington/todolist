@@ -22,16 +22,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'nudn6tz_!taymj7c^#!=!y^qm8*za%z7-cz7tu6p@15ej&&*#6'
 # SECURITY WARNING: keep the secret key used in production secret!
-import sys 
+import sys
 
 def find_or_create_secret_key():
-    """ 
+    """
     Look for secret_key.py and return the SECRET_KEY entry in it if the file exists.
     Otherwise, generate a new secret key, save it in secret_key.py, and return the key.
     """
     SECRET_KEY_DIR = os.path.dirname(__file__)
-    SECRET_KEY_FILEPATH = os.path.join(SECRET_KEY_DIR, 'secret_key.py') 
-    sys.path.insert(1,SECRET_KEY_DIR) 
+    SECRET_KEY_FILEPATH = os.path.join(SECRET_KEY_DIR, 'secret_key.py')
+    sys.path.insert(1,SECRET_KEY_DIR)
 
     if os.path.isfile(SECRET_KEY_FILEPATH):
         from secret_key import SECRET_KEY
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lists',
     'accounts',
+    'functional_tests',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

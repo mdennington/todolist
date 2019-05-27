@@ -8,10 +8,12 @@ warnings.filterwarnings(
         module=r'.*paramiko*'
 )
 
+
 @task
 def gitlog(c):
     local_ctx = Context()
     local_ctx.run('git log --oneline')
+
 
 @task
 def deploy(c):
@@ -24,4 +26,12 @@ def deploy(c):
     local_ctx.run('git push -u origin master')
     local_ctx.run('heroku maintenance:on')
     local_ctx.run('git push heroku master')
+    local_ctx.run('heroku maintenance:off')
+
+
+@task
+def pushheroku(c):
+    local_ctx = Context()
+    local_ctx.run('heroku maintenance:on')
+    local_ctx.run('git push -f heroku master')
     local_ctx.run('heroku maintenance:off')
