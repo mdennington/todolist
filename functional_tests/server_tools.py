@@ -1,6 +1,7 @@
+from invoke import Context
 from fabric.api import run
 from fabric.context_managers import settings, shell_env
-
+from django.core import management
 
 def _get_manage_dot_py(host):
     return f'~/sites/{host}/virtualenv/bin/python ~/sites/{host}/manage.py'
@@ -11,9 +12,12 @@ def _get_manage_dot_py(host):
 
 # this is heroku run python manage.py flush --noinput
 def reset_database(host):
-    manage_dot_py = _get_manage_dot_py(host)
-    with settings(host_string=f'elspeth@{host}'):
-        run(f'{manage_dot_py} flush --noinput')
+    local_ctx = Context()
+    local_ctx.run(f'heroku run python manage.py migrate')
+    local_ctx.run(f'heroku run python manage.py flush --no-input')
+    # manage_dot_py = _get_manage_dot_py(host)
+    # with settings(host_string=f'elspeth@{host}'):
+    #     run(f'{manage_dot_py} flush --noinput')
 
 # do I need env vars ?
 def _get_server_env_vars(host):
@@ -25,7 +29,7 @@ def _get_server_env_vars(host):
 def create_session_on_server(host, email):
 # manage_dot_py = _get_manage_dot_py(host)
     local_ctx = Context()
-    session_key = local_ctx.run('heroku run python manage.py createsession {email}')
+    session_key = local_ctx.run(f'heroku run python manage.py createsession {email}')
 
     # with settings(host_string=f'elspeth@{host}'):
     #     env_vars = _get_server_env_vars(host)
