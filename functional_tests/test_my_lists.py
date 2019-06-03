@@ -12,7 +12,7 @@ class MyListsTest(FunctionalTest):
     def create_pre_authenticated_session(self, email):
         """helper function to create pre-authenticated session"""
         if self.staging_server:
-            session_key = create_session_on_server(self.staging_server, email)
+            session_key = create_session_on_server("ssh.pythonanywhere.com", email)
         else:
             session_key = create_pre_authenticated_session(email)
 
@@ -32,5 +32,6 @@ class MyListsTest(FunctionalTest):
 
         # Edith is a logged-in user
         self.create_pre_authenticated_session(email)
+        print(self.live_server_url)
         self.browser.get(self.live_server_url)
         self.wait_to_be_logged_in(email)
