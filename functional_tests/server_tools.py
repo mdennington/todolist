@@ -12,5 +12,6 @@ def create_session_on_server(host, email):
     with settings(host_string=f'mdennington@{host}'):
         with prefix('workon todolist-venv'):
             run(f'python --version')
-            session_key = run(f'python todolist/manage.py createsession {email}')
+            session_key = run(
+                f'python todolist/manage.py createsession {email}')
             return session_key.strip()

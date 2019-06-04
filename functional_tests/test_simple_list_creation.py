@@ -37,11 +37,11 @@ class NewVisitorTest(FunctionalTest):
         self.add_list_item('Use peacock feathers to make a fly')
 
         # The page updates again, and now shows both items on her list
-        self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
+        self.wait_for_row_in_list_table(
+            '2: Use peacock feathers to make a fly')
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
         # Satisfied, she goes back to sleep
-
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
@@ -54,8 +54,8 @@ class NewVisitorTest(FunctionalTest):
 
         # Now a new user, Francis, comes along to the site.
 
-        ## We use a new browser session to make sure that no information
-        ## of Edith's is coming through from cookies etc
+        # We use a new browser session to make sure that no information
+        # of Edith's is coming through from cookies etc
         self.browser.quit()
         self.browser = webdriver.Firefox()
 
