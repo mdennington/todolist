@@ -59,4 +59,3 @@ class ExistingListItemFormTest(TestCase):
         form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
         new_item = form.save()
         self.assertEqual(new_item, Item.objects.all()[0])
-

@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
-User = get_user_model()
 
 from lists.forms import ExistingListItemForm, ItemForm
 from lists.models import List
+User = get_user_model()
+
 
 def home_page(request):
     return render(request, 'home.html', {'form': ItemForm()})

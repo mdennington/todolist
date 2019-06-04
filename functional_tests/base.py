@@ -62,7 +62,6 @@ class FunctionalTest(StaticLiveServerTestCase):
 
 # To Do add this to other tests
 
-
     def add_list_item(self, item_text):
         num_rows = len(self.browser.find_elements_by_css_selector('#id_list_table tr'))
         self.get_item_input_box().send_keys(item_text)
