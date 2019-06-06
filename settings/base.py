@@ -157,9 +157,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'lists/static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'lists/static'),
+# )
 
 LOGGING = {
     'version': 1,

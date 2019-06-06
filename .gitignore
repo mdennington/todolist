@@ -5,3 +5,8 @@ __pycache__
 *.pyc
 ./static
 .env
+staticfiles/
+db.sqlite3.old
+lists/migrations/
+accounts/migrations
+oldsettings.py
