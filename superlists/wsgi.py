@@ -7,10 +7,13 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
-import os
+import os, sys
 
 from django.core.wsgi import get_wsgi_application
+#from superlists import app as application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "superlists.settings")
+sys.path.append('/home/mdennington/todolist')
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.production")
 
 application = get_wsgi_application()
