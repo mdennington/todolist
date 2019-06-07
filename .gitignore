@@ -1,5 +1,5 @@
 db.sqlite3
-geckodriver.log
+geckodriver.*
 virtualenv
 __pycache__
 *.pyc
@@ -10,3 +10,28 @@ db.sqlite3.old
 lists/migrations/
 accounts/migrations
 oldsettings.py
+*.bat
+__pycache__/
+*.py[cod]
+*$py.class
+
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Django stuff:
+*.log
+db.sqlite3
+db.sqlite3-journal

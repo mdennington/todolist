@@ -10,7 +10,6 @@ selenium = "*"
 django = "*"
 gunicorn = "*"
 whitenoise = "*"
-fabric = "*"
 pep8 = "*"
 fabric3 = "*"
 
