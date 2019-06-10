@@ -12,6 +12,7 @@ gunicorn = "*"
 whitenoise = "*"
 pep8 = "*"
 fabric3 = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"

@@ -16,4 +16,5 @@ def create_session_on_server(host, email):
 
 
 if __name__ == '__main__':
-    create_session_on_server("ssh.pythonanywhere.com", "denningtonmailer@gmail.com")
+    create_session_on_server("ssh.pythonanywhere.com",
+                             "denningtonmailer@gmail.com")
