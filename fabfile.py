@@ -15,6 +15,7 @@ def deploy():
     local('git commit -m "%s"' % comment)
     local('git push -u origin master')
     with settings(host_string=f'mdennington@ssh.pythonanywhere.com'):
-        run(f'git pull')
-        run(f'python manage.py collectstatic')
-        run(f'python manage.py migrate')
+        run(f'ls -l')
+        # run(f'git pull')
+        # run(f'python manage.py collectstatic')
+        # run(f'python manage.py migrate')
