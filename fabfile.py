@@ -1,5 +1,5 @@
 from fabric.api import run, task, local
-from fabric.context_managers import settings
+from fabric.context_managers import settings, cd, prefix
 
 
 @task
@@ -15,8 +15,8 @@ def deploy():
     local('git commit -m "%s"' % comment)
     local('git push -u origin master')
     with settings(host_string=f'mdennington@ssh.pythonanywhere.com'):
-        run('cd todolist')
-        run('ls -l')
-        # run(f'git pull')
-        # run(f'python manage.py collectstatic')
-        # run(f'python manage.py migrate')
+        with cd('todolist'):
+            run(f'git pull')
+            with prefix('workon todolist-venv') :
+                run(f'python manage.py collectstatic --noinput')
+                run(f'python manage.py migrate')
